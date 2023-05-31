@@ -2,7 +2,6 @@
 # using Binary search method.
 
 input_lst = eval(input("Enter a list of integers: "))
-input_lst.sort()
 search_ele = int(input("Enter integer to search: "))
 
 def lst_search(lst, search):

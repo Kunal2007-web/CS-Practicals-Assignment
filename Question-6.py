@@ -5,7 +5,6 @@
 # 3. Make half string in Uppercase
 # 4. Exit
 
-# Input
 main_str = input("Enter a String: ")
 
 # Menu
