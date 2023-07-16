@@ -1,3 +1,6 @@
+# VSCode
+.vscode/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -124,5 +127,9 @@ dmypy.json
 .pyre/
 
 # Documents
-CS Summer Vacation Practicals.docx
-CS Summer Vacation Practicals.pdf
+*.docx
+*.docx#
+*.pdf
+*.txt
+*.csv
+*.dat
