@@ -1,6 +1,7 @@
 # Create a Menu-Driven Program which does CRUD operation on the database table Students(StudentID, Name, Course)
 import mysql.connector as c
-db = c.connect(host="localhost", username="root", passwd="Kunal@2007", database="KunalKumarPractical")
+password = input("Enter Password to SQL server: ")
+db = c.connect(host="localhost", username="root", passwd=password, database="KunalKumarPractical")
 cursor = db.cursor()
 
 # Create Database and Tables
@@ -37,12 +38,12 @@ Choose [1/2]: """)
     
     if to_update == "1" or to_update.lower() == "name":
         name = input("Enter Updated Name: ")
-        query = "UPDATE TABLE Students SET Name = '{}' WHERE StudentID = {} ;".format(name, stu_id)
+        query = "UPDATE Students SET Name = '{}' WHERE StudentID = {} ;".format(name, stu_id)
         cursor.execute(query)
         print("Data Updated")
     elif to_update == "2" or to_update.lower() == "course":
         course = input("Enter Updated Course: ")
-        query = "UPDATE TABLE Students SET Course = '{}' WHERE StudentID = {} ;".format(course, stu_id)
+        query = "UPDATE Students SET Course = '{}' WHERE StudentID = {} ;".format(course, stu_id)
         cursor.execute(query)
         print("Data Updated")
     else:
