@@ -1,18 +1,13 @@
 # Create a Menu-Driven Program which does CRUD operation on the database table Students(StudentID, Name, Course)
 import mysql.connector as c
 password = input("Enter Password to SQL server: ")
-db = c.connect(host="localhost", username="root", passwd=password, database="KunalKumarPractical")
+db = c.connect(host="localhost", username="root", passwd=password)
 cursor = db.cursor()
 
 # Create Database and Tables
-# cursor.execute("SHOW DATABASES;")
-# if ("KunalKumarPractical",) in cursor:
-#     cursor.execute("CREATE DATABASE KunalKumarPractical;")
-#     db.database = "KunalKumarPractical"
-# cursor.execute("SHOW TABLES;")
-# if ("Students",) in cursor:
-#     cursor.execute("CREATE TABLE Students (StudentID INTEGER PRIMARY KEY, Name VARCHAR(50) NOT NULL, Course VARCHAR(50) NOT NULL);")
-
+cursor.execute("CREATE DATABASE IF NOT EXISTS KunalKumarPractical;")
+cursor.execute("USE KunalKumarPractical;")
+cursor.execute("CREATE TABLE IF NOT EXISTS Students (StudentID INTEGER PRIMARY KEY, Name VARCHAR(50) NOT NULL, Course VARCHAR(50) NOT NULL);")
 
 # CRUD Functions
 def add_data():
@@ -23,8 +18,11 @@ def add_data():
 
     query = "INSERT INTO Students VALUES({}, '{}', '{}')".format(stu_id, name, course)
     cursor.execute(query)
-    db.commit()
-    print("Added Row")
+    if cursor.rowcount > 0:
+        db.commit()
+        print("Added Row")
+    else:
+        print("Could Not Add Row!")
 
 
 def update_data():
@@ -40,12 +38,18 @@ Choose [1/2]: """)
         name = input("Enter Updated Name: ")
         query = "UPDATE Students SET Name = '{}' WHERE StudentID = {} ;".format(name, stu_id)
         cursor.execute(query)
-        print("Data Updated")
+        if cursor.rowcount > 0:
+            print("Data Updated")
+        else:
+            print("Could Not Update Data!")
     elif to_update == "2" or to_update.lower() == "course":
         course = input("Enter Updated Course: ")
         query = "UPDATE Students SET Course = '{}' WHERE StudentID = {} ;".format(course, stu_id)
         cursor.execute(query)
-        print("Data Updated")
+        if cursor.rowcount > 0:
+            print("Data Updated")
+        else:
+            print("Could Not Update Data!")
     else:
         print("Choose Correct Option!")
 
@@ -57,8 +61,11 @@ def delete_data():
 
     query = "DELETE FROM Students WHERE StudentID = {} ;".format(stu_id)
     cursor.execute(query)
-    db.commit()
-    print("Row Deleted")
+    if cursor.rowcount > 0:
+        db.commit()
+        print("Row Deleted")
+    else:
+        print("Could Not Delete Row!")
 
 def read_data():
     print("Reading Data from Table: Students")
