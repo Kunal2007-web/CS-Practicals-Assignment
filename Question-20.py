@@ -72,7 +72,8 @@ def read_data():
     cursor.execute("SELECT * FROM Students;")
     data = cursor.fetchall()
     print(f"Reading from {cursor.rowcount} rows.")
-    print(data)
+    for i in data:
+        print(i)
 
 # Menu
 while True:
