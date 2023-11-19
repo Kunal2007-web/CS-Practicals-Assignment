@@ -1,4 +1,4 @@
-# Create a Menu-Driven Program which does CRUD operation on the database table Students(StudentID, Name, Course)
+# Create a Menu-Driven Program which does CRUD operation on the table Students(StudentID, Name, Course).
 import mysql.connector as c
 password = input("Enter Password to SQL server: ")
 db = c.connect(host="localhost", username="root", passwd=password)
